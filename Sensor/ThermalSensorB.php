@@ -1,6 +1,6 @@
 <?php
 
-class ThermalSensorB
+class ThermalSensorB extends Sensor
 {
 
     public $position;

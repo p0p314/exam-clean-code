@@ -12,8 +12,12 @@ class ThermalSensorBAdapter implements ISensorA
     public function onDetect($callback)
     {
         $retour = json_decode($this->sensorB->triggerHeatSignature($callback));
-        $messageRetour = "[$retour->date] $retour->sensor -> $retour->detection";
+        $messageRetour = "[$retour->date] $retour->sensor => $retour->detection";
+        foreach ($this->sensorB->callbackList as $name => $callback) {
+            if ($name === 'onDetect') {
+                $callback($messageRetour);
+            }
+        }
         var_dump($messageRetour);
-        // return "[$retour->date] $retour->sensor -> $retour->detection";
     }
 }
